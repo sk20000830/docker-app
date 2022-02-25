@@ -30,7 +30,6 @@ class UserController extends AdminController
         $grid->column('name_sei', __('Name sei'));
         $grid->column('name_mei', __('Name mei'));
         $grid->column('email', __('Email'));
-        $grid->column('email_verified_at', __('Email verified at'));
         $grid->column('phone_number1', __('Phone number1'));
         $grid->column('phone_number2', __('Phone number2'));
         $grid->column('phone_number3', __('Phone number3'));
@@ -38,10 +37,17 @@ class UserController extends AdminController
         $grid->column('post_code2', __('Post code2'));
         $grid->column('adress', __('Adress'));
         $grid->column('birthday', __('Birthday'));
-        $grid->column('password', __('Password'));
-        $grid->column('remember_token', __('Remember token'));
         $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+
+        $grid->filter(function ($filter) {
+            $filter->column(1/2, function ($filter) {
+                $filter->disableIdFilter();     
+                $filter->contains('name_mei','First Name');       
+                $filter->contains('name_sei','Last Name'); 
+                $filter->contains('email','email');         
+                $filter->contains('adress','adress');         
+            });
+        });
 
         return $grid;
     }
@@ -60,7 +66,6 @@ class UserController extends AdminController
         $show->field('name_sei', __('Name sei'));
         $show->field('name_mei', __('Name mei'));
         $show->field('email', __('Email'));
-        $show->field('email_verified_at', __('Email verified at'));
         $show->field('phone_number1', __('Phone number1'));
         $show->field('phone_number2', __('Phone number2'));
         $show->field('phone_number3', __('Phone number3'));
@@ -71,7 +76,6 @@ class UserController extends AdminController
         $show->field('password', __('Password'));
         $show->field('remember_token', __('Remember token'));
         $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
 
         return $show;
     }
@@ -88,7 +92,6 @@ class UserController extends AdminController
         $form->text('name_sei', __('Name sei'));
         $form->text('name_mei', __('Name mei'));
         $form->email('email', __('Email'));
-        $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
         $form->text('phone_number1', __('Phone number1'));
         $form->text('phone_number2', __('Phone number2'));
         $form->text('phone_number3', __('Phone number3'));

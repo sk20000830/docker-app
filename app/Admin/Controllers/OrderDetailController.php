@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class OrderDetailController extends AdminController
 {
@@ -22,15 +23,28 @@ class OrderDetailController extends AdminController
      *
      * @return Grid
      */
+    
     protected function grid()
     {
         $grid = new Grid(new OrderDetail());
 
+            $grid->footer(function ($query) {
+    
+                $total = $query->get()->map(function ($data) {
+                    return $data->menus->menu_price * $data->quantity;
+                })->sum();
+    
+                return "<h2 class='text-center'>Total Price ： $total $</h2>";
+            });
+        // }
+
         $grid->column('id', __('Id'));
         $grid->column('menus.menu_name', __('Menu name'));
-        $grid->column('quantity', __('Quantity'));
+        $grid->column('price', __('Price'));
+        $grid->column('quantity');
+        $grid->column('subtotal');
         $grid->column('order_id', __('Order id'));
-        $grid->column('created_at', __('Created at'));
+        $grid->column('created_at', __('date'));
 
         $grid->filter(function ($filter) {
             $filter->column(1/2, function ($filter) {

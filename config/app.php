@@ -52,9 +52,11 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'docker-locale.herokuapp.com'),
 
     'asset_url' => env('ASSET_URL', null),
+
+    'mediaPATH' => env('MEDIA_PATH'),
 
     /*
     |--------------------------------------------------------------------------

@@ -17,7 +17,7 @@
 
     <h1 class="text-center my-5"> {{$items->menu_name}}</h1>
     <div class="container text-center mx-auto w-50 my-5">
-        <img class="w-50" src="{{$items->menu_pic}}" alt="no image"> 
+        <img class="w-50" src="{{ \Config::get('app.mediaPATH') }}{{$items->menu_pic}}" alt="no image"> 
         <h1 class="text-center my-5">{{$items->menu_price}}$</h1>
         <div class="alert alert-warning my-5 pb-5 mx-auto w-75">
             <p class="text-black fw-bold">ingredient</p>

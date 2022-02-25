@@ -30,10 +30,18 @@ class MenuController extends AdminController
         $grid->column('menu_name', __('Menu name'));
         $grid->column('category', __('Category'));
         $grid->column('ingredient', __('Ingredient'));
-        $grid->column('menu_price', __('Menu price'));
-        $grid->column('menu_pic', __('Menu pic'));
+        $grid->column('menu_price', __('Menu price'))->filter('range');
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+
+        $grid->filter(function ($filter) {
+            $filter->column(1/2, function ($filter) {
+                $filter->disableIdFilter();     
+                $filter->contains('menu_name','Name'); 
+                $filter->contains('ingredient','Ingredient'); 
+                // $filter->contains('category','Category'); 
+            });   
+        });
 
         return $grid;
     }
@@ -53,7 +61,6 @@ class MenuController extends AdminController
         $show->field('category', __('Category'));
         $show->field('ingredient', __('Ingredient'));
         $show->field('menu_price', __('Menu price'));
-        $show->field('menu_pic', __('Menu pic'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -73,7 +80,7 @@ class MenuController extends AdminController
         $form->text('category', __('Category'));
         $form->text('ingredient', __('Ingredient'));
         $form->number('menu_price', __('Menu price'));
-        $form->text('menu_pic', __('Menu pic'));
+        $form->image('menu_pic', __('Menu picture'));
 
         return $form;
     }

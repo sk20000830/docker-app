@@ -60,6 +60,20 @@ return [
             'url' => env('APP_URL').'/uploads',
         ],
 
+        'qiniu' => [
+            'driver' =>'qiniu',
+            'domains' => [
+                'default' =>'xxxxx.com1.z0.glb.clouddn.com', //your domain name
+                'https' =>'dn-yourdomain.qbox.me', //your HTTPS domain name
+                'custom' =>'static.abc.com', //your custom domain name
+             ],
+            'access_key'=>'', //AccessKey
+            'secret_key'=>'', //SecretKey
+            'bucket' =>'', //Bucket name
+            'notify_url'=>'', //Persistent processing callback address
+            'url' =>'http://of8kfibjo.bkt.clouddn.com/', // fill in the file to access the root url
+        ],
+
     ],
 
     /*

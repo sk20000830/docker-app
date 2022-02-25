@@ -20,4 +20,5 @@ Route::group([
     $router->resource('order-details', OrderDetailController::class);
 
     $router->resource('menus', MenuController::class);
+
 });

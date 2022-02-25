@@ -10,6 +10,7 @@ class OrderDetail extends Model
     use HasFactory;
 
     protected $table = "order_details";
+    protected $appends = ['price','subtotal'];
 
     protected $fillable = [
         'menu_id',
@@ -27,6 +28,17 @@ class OrderDetail extends Model
     public function menus() 
     {
         return $this->hasOne('App\Models\Menu', 'id', 'menu_id');
-    
     }
+
+    public function getPriceAttribute()
+    {
+        return $this->menus->menu_price ."$";
+    }
+
+    public function getSubTotalAttribute()
+    {
+        return $this->menus->menu_price * $this->quantity ."$";
+    }
+
+    
 }

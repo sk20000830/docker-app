@@ -29,6 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $total=0?>
                     @foreach ($datas as $item)
                         <tr>
                             <td>{{$item->menus->menu_name}}</td>
@@ -37,13 +38,12 @@
                             <td>{{$item->quantity}}</td>
                             <td>{{$item->menus->menu_price * $item->quantity}}$</td>
                         </tr>
+                        <?php $total += ($item->menus->menu_price * $item->quantity)?>
                     @endforeach  
-                        <!-- <tr>
-                                <td colspan=3><h3>total</h3></td>
-                                <td><span class="fs-3">$</span></td>
-                        </tr>   -->
+                        
                 </tbody>                                    
             </table>    
+            <h2 class="text-center">Total : {{$total}} $</h2>
         </div>
     </div>
 

@@ -20,7 +20,7 @@
             @foreach($items as $item)
                     <td class="px-5">
                         <a href="/item/{{$item->id}}">      
-                            <img class="menuImage" src="{{$item->menu_pic}}" alt="no image"> 
+                            <img class="menuImage" src="{{ \Config::get('app.mediaPATH') }}{{$item->menu_pic}}" alt="no image"> 
                             <h3>{{$item->menu_name}}</h3>
                             <h3>{{$item->menu_price}}$</h3>
                         </a>
